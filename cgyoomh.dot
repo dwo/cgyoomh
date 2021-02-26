@@ -18,11 +18,9 @@ strict digraph cgyoomh {
 
   // Things
   node[shape=rectangle]
-  bowm [label="Bloodshed on Wolf Mountain (1936)"]
   SFST [label="'Shooting and fucking are the same thing'"]
   CCR [label="Chinese Communist Revolution (1945-50)"]
   RR [label="Russian Revolution (1917-23)"]
-  MBMF [label="My Bones and My Flute (1955)"]
   Trinidad
   BE [label="British Empire"]
   UK
@@ -36,19 +34,23 @@ strict digraph cgyoomh {
   Individualism
   CS [label="Conspiracy Theories"]
   Communism
+  Maoism
   Marines [label="US Marines"]
-  TIW [label="The Idle Warriors (1962)"]
   Suicide
-  Gadfly [label="The Gadfly (1897)"]
-  BA [label="Boolean algebra"]
-  Computers
+  Computers [label="Boolean algebra (Computers)"]
   DS [label="Digital Surveillance"]
   Internet
   RAF [label="Red Army Faction / Baader-Meinhof"]
 
+  // Works
+  node[shape=rectangle fontname=italic]
+  bowm [label="Bloodshed on Wolf Mountain (1936)"]
+  MBMF [label="My Bones and My Flute (1955)"]
+  LoT [label="The Laws of Thought (1854)"]
+  Gadfly [label="The Gadfly (1897)"]
+  TIW [label="The Idle Warriors (1962)"]
+
   // Graph
-  Collectivism -> Communism
-  Communism -> {CCR, RR} // Associated revolutions
 
   Individualism -> CCM
   CCM -> BPM
@@ -69,6 +71,7 @@ strict digraph cgyoomh {
   /* Bloodshed on Wolf Mountain (Part 1): Jiang Qing acted in a film with Li Lili, later came to a position of power
    * which she abused to get revenge on her fellow cast member. Was used by Mao Zedong to consolidate power in
    * revolution.  */
+  Communism -> mz
   jq -> mz
   mz -> CCR
   bowm -> jq
@@ -84,19 +87,17 @@ strict digraph cgyoomh {
 
   /* George Boole's odd connection to communist revolutions through his daughter's novel, and also inventing maths that
    * led to computers which becomes significant, obvs */
-  UK -> bool
-  bool -> evnb
-  Collectivism -> evnb
-  bool -> BA
-  BA -> Computers -> {DS, Internet}
+  Communism -> RR
+  Collectivism -> {Communism, evnb}
+  UK -> bool -> {LoT, evnb}
+  LoT -> Computers -> {DS, Internet}
   Internet -> CS
   evnb -> Gadfly
   Gadfly -> {CCR,RR}
 
   // Shooting and Fucking are the Same Thing (Part 2): Red Army Faction's link to Mao + Boole
-  {mz, Communism} -> Maoism -> RAF
-  DS -> RAF
-  RAF -> ab
+  mz -> Maoism -> ab
+  {ab, DS} -> RAF
   ab -> SFST
 
   // Michael X tried to escape up Berbice River (featured in Mittelholzer's novel) after murdering Gale Benson
